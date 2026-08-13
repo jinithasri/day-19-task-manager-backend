@@ -3,7 +3,20 @@ const mongoose = require("mongoose");
 const taskSchema = new mongoose.Schema({
     title: {
         type: String,
-        required: true
+        required: true,
+        trim: true
+    },
+
+    category: {
+        type: String,
+        enum: ["Work", "Personal", "Urgent"],
+        default: "Personal"
+    },
+
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: false
     },
 
     completed: {
